@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Programmer's Profile | BSIT Student</title>
+  <meta name="description" content="Portfolio of a 3rd-year BSIT student majoring in Network Design and Management.">
+  <link rel="stylesheet" href="stylesheet.css">
+</head>
+
+<body>
+
+  <!-- ===== NAVIGATION BAR ===== -->
+  <nav>
+    <div class="wrap">
+      <a href="#home" class="logo mono">&lt;<span id="navName">dev</span> /&gt;</a>
+      <button id="menu" aria-label="Toggle menu" aria-expanded="false">Menu</button>
+      <ul class="links" id="links"></ul>
+    </div>
+  </nav>
+
+  <main>
+
+    <!-- ===== HOME / HERO ===== -->
+    <section id="home">
+      <div class="wrap hero">
+        <div>
+          <p class="prompt mono"><b></b> kilala mo ba ako, boiiiii??</p>
+          <h1 id="heroName"></h1>
+          <p class="role" id="heroRole"></p>
+          <p class="role mono" id="heroSpec"></p>
+          <p class="typed mono" id="typed" aria-live="off"></p>
+          <p class="intro" id="heroIntro"></p>
+
+          <a class="btn primary" href="#projects">Explore My Projects</a>
+          <a class="btn" href="#contact">Contact Me</a>
+        </div>
+
+        <div class="photo-box">
+          <div class="photo" id="photo">
+            <span class="mono">&lt;photo /&gt;<br>add yours</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== ABOUT ===== -->
+    <section id="about">
+      <div class="wrap about">
+        <h2>About Me</h2>
+        <div id="aboutText"></div>
+
+        <h3 class="sub">My Interests</h3>
+        <div class="grid" id="interests"></div>
+      </div>
+    </section>
+
+    <!-- ===== PERSONAL PROFILE ===== -->
+    <section id="profile">
+      <div class="wrap">
+        <h2>Personal Profile</h2>
+        <div class="grid" id="profileGrid"></div>
+      </div>
+    </section>
+
+    <!-- ===== EDUCATION ===== -->
+    <section id="education">
+      <div class="wrap">
+        <h2>Education</h2>
+        <div class="timeline" id="timeline"></div>
+      </div>
+    </section>
+
+    <!-- ===== PROJECTS ===== -->
+    <section id="projects">
+      <div class="wrap">
+        <h2>Projects</h2>
+        <p class="lbl note"></p>
+        <div class="grid" id="projectGrid"></div>
+      </div>
+    </section>
+
+    <!-- ===== CONTACT ===== -->
+    <section id="contact">
+      <div class="wrap">
+        <h2>Contact</h2>
+
+        <div class="contact">
+          <div class="clist" id="clist"></div>
+
+          <form id="form" novalidate>
+            <label>
+              Name
+              <input id="fName" name="name" autocomplete="name">
+              <span class="err" data-for="fName"></span>
+            </label>
+
+            <label>
+              Email Address
+              <input id="fEmail" name="email" type="email" autocomplete="email">
+              <span class="err" data-for="fEmail"></span>
+            </label>
+
+            <label>
+              Message
+              <textarea id="fMsg" name="message" rows="5"></textarea>
+              <span class="err" data-for="fMsg"></span>
+            </label>
+
+            <button class="btn primary" type="submit">Send Message</button>
+            <div id="fb" role="status"></div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===== FOOTER ===== -->
+  <footer>
+    <div class="wrap">
+      <div>
+        <strong id="footerName"></strong><br>
+        BSIT Student | Network Design and Management<br>
+        &copy; <span id="year"></span> All rights reserved.
+      </div>
+
+      <ul id="footerLinks"></ul>
+      <div id="footerIcons" class="footer-icons"></div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

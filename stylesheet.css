@@ -1,0 +1,547 @@
+/* =========================================================
+   1. THEME COLORS AND BASE STYLES
+   ========================================================= */
+:root {
+  --bg: #0d0e12;       /* page background  */
+  --panel: #16181f;    /* cards and inputs */
+  --line: #262a35;     /* borders          */
+  --text: #e8eaf0;     /* main text        */
+  --mute: #9aa1b2;    /* secondary text   */
+  --blue: #4f8cff;     /* accent 1         */
+  --purple: #8b6cff;   /* accent 2         */
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 70px; /* keeps headings clear of the fixed navbar */
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font: 16px/1.65 system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+:focus-visible {
+  outline: 2px solid var(--blue);
+  outline-offset: 3px;
+}
+
+.mono {
+  font-family: ui-monospace, "Cascadia Code", Menlo, Consolas, monospace;
+}
+
+/* =========================================================
+   2. LAYOUT HELPERS
+   ========================================================= */
+.wrap {
+  max-width: 1040px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+section {
+  padding: 84px 0;
+}
+
+h2 {
+  font-size: 1.9rem;
+  margin-bottom: 28px;
+}
+
+h2::before {
+  content: "| ";
+  color: var(--blue);
+}
+
+h3.sub {
+  margin: 30px 0 14px;
+  font-size: 1.15rem;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+}
+
+.note {
+  margin: -14px 0 20px;
+}
+
+/* =========================================================
+   3. NAVIGATION BAR
+   ========================================================= */
+nav {
+  position: fixed;
+  inset: 0 0 auto;
+  z-index: 10;
+  background: rgba(13, 14, 18, 0.88);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--line);
+}
+
+nav .wrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 58px;
+}
+
+.logo {
+  color: var(--blue);
+}
+
+.links {
+  display: flex;
+  gap: 22px;
+  list-style: none;
+  padding: 0;
+}
+
+.links a {
+  color: var(--mute);
+  transition: color 0.2s;
+}
+
+.links a:hover {
+  color: var(--text);
+}
+
+/* The menu button is hidden on desktop */
+#menu {
+  display: none;
+  background: none;
+  border: 1px solid var(--line);
+  color: var(--text);
+  border-radius: 8px;
+  padding: 6px 12px;
+  cursor: pointer;
+}
+
+/* Mobile navigation */
+@media (max-width: 760px) {
+  #menu {
+    display: block;
+  }
+
+  .links {
+    display: none;
+    position: absolute;
+    top: 58px;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    background: var(--panel);
+    padding: 16px 20px;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .links.open {
+    display: flex;
+  }
+}
+
+/* =========================================================
+   4. HERO SECTION
+   ========================================================= */
+#home {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding-top: 90px;
+}
+
+.hero {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 40px;
+  align-items: center;
+}
+
+.prompt {
+  color: var(--mute);
+  margin-bottom: 10px;
+}
+
+.prompt b {
+  color: var(--blue);
+  font-weight: 400;
+}
+
+h1 {
+  font-size: clamp(2.2rem, 6vw, 3.6rem);
+  line-height: 1.1;
+  margin-bottom: 10px;
+}
+
+.role {
+  color: var(--mute);
+  margin-bottom: 6px;
+}
+
+/* Typing effect text and blinking cursor */
+.typed {
+  min-height: 1.6em;
+  color: var(--purple);
+  margin-bottom: 16px;
+}
+
+.typed::after {
+  content: "▌";
+  animation: blink 1s steps(2) infinite;
+}
+
+@keyframes blink {
+  50% { opacity: 0; }
+}
+
+.intro {
+  max-width: 56ch;
+  color: var(--mute);
+  margin-bottom: 26px;
+}
+
+/* Profile photo placeholder */
+.photo-box {
+  display: flex;
+  justify-content: center;
+}
+
+.photo {
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  border: 2px solid var(--purple);
+  background: var(--panel) center / cover;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  font-size: 0.85rem;
+  color: var(--mute);
+  box-shadow: 0 0 0 8px rgba(139, 108, 255, 0.1);
+}
+
+@media (max-width: 820px) {
+  .hero {
+    grid-template-columns: 1fr;
+  }
+
+  .photo-box {
+    order: -1; /* photo appears first on small screens */
+  }
+}
+
+/* =========================================================
+   5. BUTTONS
+   ========================================================= */
+.btn {
+  display: inline-block;
+  padding: 11px 20px;
+  margin: 0 8px 8px 0;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: transparent;
+  color: var(--text);
+  font: inherit;
+  cursor: pointer;
+  transition: transform 0.2s, border-color 0.2s;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  border-color: var(--blue);
+}
+
+.btn.primary {
+  background: linear-gradient(135deg, var(--blue), var(--purple));
+  border: 0;
+  color: #fff;
+}
+
+.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* =========================================================
+   6. CARDS (interests, profile, education, projects)
+   ========================================================= */
+.card {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 20px;
+  transition: border-color 0.2s, transform 0.2s;
+}
+
+.card:hover {
+  border-color: var(--blue);
+  transform: translateY(-3px);
+}
+
+.card h3 {
+  font-size: 1.05rem;
+  margin-bottom: 4px;
+}
+
+.card p,
+.lbl {
+  color: var(--mute);
+  font-size: 0.92rem;
+}
+
+.lbl {
+  display: block;
+  font-size: 0.8rem;
+}
+
+.val {
+  font-weight: 600;
+}
+
+/* Icons */
+.ico,
+.card svg {
+  width: 24px;
+  height: 24px;
+  margin-bottom: 10px;
+  fill: none;
+  stroke: var(--blue);
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.about p {
+  max-width: 68ch;
+  color: var(--mute);
+  margin-bottom: 14px;
+}
+
+/* =========================================================
+   7. EDUCATION TIMELINE
+   ========================================================= */
+.timeline {
+  display: grid;
+  gap: 22px;
+  padding-left: 28px;
+  border-left: 2px solid var(--line);
+}
+
+.tl {
+  position: relative;
+}
+
+/* The dot on the timeline line */
+.tl::before {
+  content: "";
+  position: absolute;
+  left: -36px;
+  top: 22px;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--bg);
+  border: 2px solid var(--mute);
+}
+
+/* Highlighted current year */
+.tl.current {
+  border-color: var(--purple);
+  box-shadow: 0 0 24px rgba(139, 108, 255, 0.18);
+}
+
+.tl.current::before {
+  background: var(--purple);
+  border-color: var(--purple);
+}
+
+.tag {
+  display: inline-block;
+  margin: 0 6px 6px 0;
+  padding: 2px 10px;
+  border: 1px solid var(--line);
+  border-radius: 99px;
+  font-size: 0.76rem;
+  color: var(--mute);
+}
+
+.status {
+  color: var(--blue);
+  border-color: var(--blue);
+}
+
+/* =========================================================
+   8. PROJECT CARDS
+   ========================================================= */
+.prj-img {
+  height: 120px;
+  margin-bottom: 14px;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #1c2340, #2a1f4d);
+  display: grid;
+  place-items: center;
+  color: var(--mute);
+  overflow: hidden;
+}
+
+.prj-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.prj .btn {
+  margin: 10px 0 0;
+  padding: 7px 14px;
+  font-size: 0.88rem;
+}
+
+/* =========================================================
+   9. CONTACT SECTION
+   ========================================================= */
+.contact {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 30px;
+}
+
+.clist {
+  display: grid;
+  gap: 12px;
+  align-content: start;
+}
+
+.clist a,
+.clist span.item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--panel);
+}
+
+.clist a:hover {
+  border-color: var(--blue);
+}
+
+.clist svg {
+  flex: none;
+  width: 20px;
+  height: 20px;
+  fill: none;
+  stroke: var(--blue);
+  stroke-width: 2;
+}
+
+/* Form */
+form {
+  display: grid;
+  gap: 14px;
+}
+
+label {
+  font-size: 0.9rem;
+  color: var(--mute);
+}
+
+input,
+textarea {
+  width: 100%;
+  margin-top: 5px;
+  padding: 11px 12px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--panel);
+  color: var(--text);
+  font: inherit;
+}
+
+input.bad,
+textarea.bad {
+  border-color: #ff6b6b;
+}
+
+.err {
+  display: block;
+  min-height: 1em;
+  font-size: 0.82rem;
+  color: #ff8a8a;
+}
+
+/* Form feedback box: success, error, and info states */
+#fb {
+  display: none;
+  padding: 12px 14px;
+  border-radius: 8px;
+  font-size: 0.92rem;
+}
+
+#fb.ok   { display: block; background: rgba(80, 200, 140, 0.12); border: 1px solid #4cc38a; }
+#fb.no   { display: block; background: rgba(255, 107, 107, 0.10); border: 1px solid #ff6b6b; }
+#fb.info { display: block; background: rgba(79, 140, 255, 0.10);  border: 1px solid var(--blue); }
+
+@media (max-width: 820px) {
+  .contact {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* =========================================================
+   10. FOOTER
+   ========================================================= */
+footer {
+  padding: 32px 0;
+  border-top: 1px solid var(--line);
+  font-size: 0.9rem;
+  color: var(--mute);
+}
+
+footer .wrap {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+footer ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  list-style: none;
+  padding: 0;
+}
+
+.footer-icons {
+  display: flex;
+  gap: 14px;
+}
+
+.footer-icons .ico {
+  margin: 0;
+}
+
+/* =========================================================
+   11. ACCESSIBILITY: respect "reduce motion" setting
+   ========================================================= */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}
